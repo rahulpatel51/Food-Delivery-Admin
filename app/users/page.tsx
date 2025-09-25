@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
+import { API_URL } from "@/lib/api"
 import {
   Dialog,
   DialogContent,
@@ -116,7 +117,6 @@ interface EditFormData {
   }
 }
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"
 
 // Auth token management
 const getAuthToken = () => {
@@ -393,7 +393,7 @@ export default function UsersPage() {
       if (roleFilter && roleFilter !== "all") params.append("role", roleFilter)
       if (statusFilter && statusFilter !== "all") params.append("status", statusFilter)
 
-      const response = await fetch(`${API_BASE_URL}/api/admin/users?${params}`, {
+      const response = await fetch(`${API_URL}/api/admin/users?${params}`, {
         method: "GET",
         headers: getAuthHeaders(),
       })
@@ -431,7 +431,7 @@ export default function UsersPage() {
       const user = users.find((u) => u._id === id)
       if (user) return user
 
-      const response = await fetch(`${API_BASE_URL}/api/admin/users/${id}`, {
+      const response = await fetch(`${API_URL}/api/admin/users/${id}`, {
         method: "GET",
         headers: getAuthHeaders(),
       })

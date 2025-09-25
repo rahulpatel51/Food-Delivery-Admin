@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
+import { API_URL } from "@/lib/api"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import {
   Dialog,
@@ -85,7 +86,7 @@ export default function BannersPage() {
 
   const fetchBanners = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/admin/banners", {
+      const response = await fetch(`${API_URL}/api/admin/banners`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "application/json",
@@ -156,7 +157,7 @@ export default function BannersPage() {
 
   const handleCreateBanner = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/admin/banners", {
+      const response = await fetch(`${API_URL}/api/admin/banners`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
