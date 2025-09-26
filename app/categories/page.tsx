@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
+import { API_URL } from "@/lib/api"
 import {
   Dialog,
   DialogContent,
@@ -61,7 +62,7 @@ export default function CategoriesPage() {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/admin/categories", {
+      const response = await fetch(`${API_URL}/api/admin/categories`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "application/json",
@@ -128,7 +129,7 @@ export default function CategoriesPage() {
 
   const handleCreateCategory = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/admin/categories", {
+      const response = await fetch(`${API_URL}/api/admin/categories`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
